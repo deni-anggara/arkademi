@@ -155,3 +155,5 @@ if (!$query) {
 }
 
 echo 'Data berhasil dimasukkan pada tabel ' . $table_name . '';
+
+//
