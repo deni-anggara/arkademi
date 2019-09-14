@@ -112,3 +112,46 @@ function generateRandomString(){
 
   return randomString;
 }
+
+
+//no 6 a//
+<?php
+$db_host = 'localhost'; // Nama Server
+$db_user = 'root'; // User Server
+$db_pass = ''; // Password Server
+$db_name = 'tutorial'; // Nama Database
+
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+if (!$conn) {
+	die ('Gagal terhubung MySQL: ' . mysqli_connect_error());	
+}
+
+$table_name = 'project';
+
+$sql = 'CREATE TABLE IF NOT EXISTS `' . $table_name . '` (
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `name` int(11) NOT NULL,
+		  `id_work` date NOT NULL,
+		  `id_salary` tinyint(4) NOT NULL,
+		  PRIMARY KEY (`id`),
+		  KEY `name` (`name`)
+		) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1';
+		
+$query = mysqli_query($conn, $sql);
+
+if (!$query) {
+	die ('ERROR: Tabel ' . $table_name . ' gagal dibuat: ' . mysqli_error($conn));
+}
+
+echo 'Tabel ' . $table_name . ' berhasil dibuat <br/>';
+
+$sql = "INSERT INTO `$table_name` (`id`, `name`, `work_`, `salary`) 
+		VALUES (1, Rebecca, 'Frontend Dev', 10.000.000),
+				(2, Vita, 'Backend Dev', 12.000.000)";
+$query = mysqli_query($conn, $sql);
+
+if (!$query) {
+	die ('ERROR: Data gagal dimasukkan pada tabel ' . $table_name . ': ' . mysqli_error($conn));
+}
+
+echo 'Data berhasil dimasukkan pada tabel ' . $table_name . '';
